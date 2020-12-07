@@ -29,5 +29,5 @@ urlpatterns = [
     url(r'^hello', views.hello),
     url(r'^index', views.index),
     # 自定义 student 此时使用 include 包含其他的url文件
-    url(r'^student', include('django_app.urls')),
+    url(r'^student/', include('django_app.urls')),
 ]
