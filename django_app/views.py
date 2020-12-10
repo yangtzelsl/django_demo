@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 # 自定义view
+from django_app.exceptions import StudentNotFoundException
 from django_app.models import Student
 
 
@@ -55,7 +56,10 @@ def get_student(request):
     # 如果查询的结果不存在，
     # Exception Type:	DoesNotExist
     # Exception Value:	Student matching query does not exist.
-    student = Student.objects.get(pk=1)
+    try:
+        student = Student.objects.get(pk=1)
+    except Student.DoesNotExist:
+        raise StudentNotFoundException(id)
 
     print(student.s_name)
 
